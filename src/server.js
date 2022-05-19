@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const mysql = require('mysql2/promise');
+const { carsRoutes } = require('./routes/carsRoutes');
 
 const PORT = process.env.SERVER_PORT || 5000;
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.get('/', (request, response) => {
   response.send('hello from back end');
 });
+app.use('/', carsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
