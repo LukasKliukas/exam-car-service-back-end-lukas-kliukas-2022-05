@@ -7,7 +7,7 @@ async function getAllCarsDb() {
     const conn = await mysql.createConnection(dbConfig);
     const sql = `SELECT * FROM ${tableName}`;
     const [rows] = await conn.execute(sql);
-    await conn.close();
+    await conn.end();
     return rows;
   } catch (error) {
     console.log('getAllCarsDb ===', error);
