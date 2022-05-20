@@ -14,7 +14,28 @@ async function getAllCarsDb() {
     return false;
   }
 }
+async function insertCarToDb(newCarData) {
+  try {
+    const conn = await mysql.createConnection(dbConfig);
+    const sql = `INSERT INTO ${tableName} (brand,model,number,owner,phone,year) VALUES (?,?,?,?,?,?)`;
+    const { brand, model, number, owner, phone, year } = newCarData;
+    const [insertResult] = await conn.execute(sql, [
+      brand,
+      model,
+      number,
+      owner,
+      phone,
+      year,
+    ]);
+    await conn.end();
+    return insertResult;
+  } catch (error) {
+    console.log('Error inserting data', error);
+    res.status(500).send('Error in insertCarToDb');
+  }
+}
 
 module.exports = {
   getAllCarsDb,
+  insertCarToDb,
 };
