@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mysql = require('mysql2/promise');
 const { carsRoutes } = require('./routes/carsRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const PORT = process.env.SERVER_PORT || 5000;
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.get('/', (request, response) => {
   response.send('hello from back end');
 });
+app.use('/auth/', authRoutes);
 app.use('/', carsRoutes);
 
 app.listen(PORT, () => {
