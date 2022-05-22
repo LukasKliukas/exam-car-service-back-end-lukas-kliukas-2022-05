@@ -22,7 +22,6 @@ async function validateUser(req, res, next) {
 }
 async function validateUserWithName(req, res, next) {
   const schema = Joi.object({
-    full_name: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(5).max(50).required(),
   });
