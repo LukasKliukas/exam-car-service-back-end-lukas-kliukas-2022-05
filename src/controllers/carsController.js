@@ -1,4 +1,8 @@
-const { getAllCarsDb, insertCarToDb } = require('../model/carsModel');
+const {
+  getAllCarsDb,
+  insertCarToDb,
+  deleteSingleCarDb,
+} = require('../model/carsModel');
 const { failResponce, successResponce } = require('../utils/dbHelpers');
 
 async function getAllCars(req, res) {
@@ -17,8 +21,22 @@ async function createCar(req, res) {
   }
   res.json(carAddingResult);
 }
+async function deleteCar(req, res) {
+  const { id } = req.params;
+  const deleteSingleCar = await deleteSingleCarDb(id);
+  if (deleteSingleCar === false) {
+    res.status(500);
+    return;
+  }
+  if (deleteSingleCar.affectedRows !== 1) {
+    res.json('No rows deleted');
+    return;
+  }
+  res.json('Delete success');
+}
 
 module.exports = {
   getAllCars,
   createCar,
+  deleteCar,
 };
