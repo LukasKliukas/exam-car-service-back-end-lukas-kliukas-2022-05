@@ -5,6 +5,7 @@ const carsRoutes = express.Router();
 
 carsRoutes.get('/cars', carsController.getAllCars);
 carsRoutes.post('/cars', carsController.createCar);
+carsRoutes.delete('/cars/:id', carsController.deleteCar);
 
 module.exports = {
   carsRoutes,
