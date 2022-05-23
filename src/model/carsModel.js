@@ -34,8 +34,20 @@ async function insertCarToDb(newCarData) {
     res.status(500).send('Error in insertCarToDb');
   }
 }
-
+async function deleteSingleCarDb(id) {
+  try {
+    const conn = await mysql.createConnection(dbConfig);
+    const sql = `DELETE FROM ${tableName} WHERE id = ? LIMIT 1`;
+    const [deleteResult] = await conn.execute(sql, [id]);
+    await conn.end();
+    return deleteResult;
+  } catch (error) {
+    console.log('deleteSingleCarDb ===', error);
+    return false;
+  }
+}
 module.exports = {
   getAllCarsDb,
   insertCarToDb,
+  deleteSingleCarDb,
 };
