@@ -1,6 +1,9 @@
 GET http://localhost:8080/cars
 
 ###
+DELETE  http://localhost:8080/cars/6
+
+###
 
 POST http://localhost:8080/cars
 Content-Type: application/json
