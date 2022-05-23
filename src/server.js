@@ -22,6 +22,10 @@ app.get('/', (request, response) => {
 app.use('/auth/', authRoutes);
 app.use('/', carsRoutes);
 
+app.all('*', (req, res) => {
+  return res.status(404).send({ err: 'Page not found' });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
