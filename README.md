@@ -1,3 +1,5 @@
+### Exam car service. Back end. 2022 05
+
 ## Who this project is for:
 
 This project is a back'end part of my final exam at Codeacademy academy. Basically this project serves as a server to transfer info from database to my front'end project and vice versa. It has a connection with database through SQL sintax, where data of database is stored in an .env file. In the database, there should be two tables : users and cars. The users table must have an (id, email and password). Cars table must have info about car that you want to add to a database, like : (id,brand,model,number,owner,phone and year)
